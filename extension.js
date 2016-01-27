@@ -4,14 +4,14 @@
 define(function(require, exports, module) {
   "use strict";
 
-  console.log("Loading viewerMD");
   // GFM https://help.github.com/articles/github-flavored-markdown
 
   var extensionID = "viewerMD"; // ID should be equal to the directory name where the ext. is located
   var extensionSupportedFileTypes = ["md", "markdown", "mdown"];
 
-  var TSCORE = require("tscore");
+  console.log("Loading " + extensionID);
 
+  var TSCORE = require("tscore");
   var md2htmlConverter;
   var containerElID;
   var currentFilePath;
@@ -61,17 +61,17 @@ define(function(require, exports, module) {
         console.error("Loading file " + filePath + " failed " + error);
       });
     });
-  };
+  }
 
   function setFileType() {
 
     console.log("setFileType not supported on this extension");
-  };
+  }
 
   function viewerMode(isViewerMode) {
 
     // set readonly
-  };
+  }
 
   function setContent(content) {
     var UTF8_BOM = "\ufeff";
@@ -95,12 +95,12 @@ define(function(require, exports, module) {
         contentWindow.setContent(mdContent, fileDirectory);
       }, 500);
     }
-  };
+  }
 
   function getContent() {
     //$('#'+containerElID).html();
     console.log("Not implemented");
-  };
+  }
 
   exports.init = init;
   exports.getContent = getContent;

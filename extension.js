@@ -1,19 +1,13 @@
-/* Copyright (c) 2012-2015 The TagSpaces Authors. All rights reserved.
- * Use of this source code is governed by a AGPL3 license that
- * can be found in the LICENSE file. */
+/* Copyright (c) 2013-2016 The TagSpaces Authors.
+ * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
 
 define(function(require, exports, module) {
   "use strict";
 
   console.log("Loading viewerMD");
+  // GFM https://help.github.com/articles/github-flavored-markdown
 
-  var extensionTitle = "MardDown Viewer";
   var extensionID = "viewerMD"; // ID should be equal to the directory name where the ext. is located
-  var extensionType = "viewer";
-  var extensionIcon = "icon-list";
-  var extensionVersion = "1.0";
-  var extensionManifestVersion = 1;
-  var extensionLicense = "AGPL";
   var extensionSupportedFileTypes = ["md", "markdown", "mdown"];
 
   var TSCORE = require("tscore");
@@ -22,12 +16,9 @@ define(function(require, exports, module) {
   var containerElID;
   var currentFilePath;
   var $containerElement;
-
   var extensionDirectory = TSCORE.Config.getExtensionPath() + "/" + extensionID;
 
-  // GFM https://help.github.com/articles/github-flavored-markdown
-
-  exports.init = function(filePath, containerElementID) {
+  function init(filePath, containerElementID) {
     console.log("Initalization MD Viewer...");
     containerElID = containerElementID;
     $containerElement = $('#' + containerElID);
@@ -72,15 +63,17 @@ define(function(require, exports, module) {
     });
   };
 
-  exports.setFileType = function() {
+  function setFileType() {
+
     console.log("setFileType not supported on this extension");
   };
 
-  exports.viewerMode = function(isViewerMode) {
+  function viewerMode(isViewerMode) {
+
     // set readonly
   };
 
-  exports.setContent = function(content) {
+  function setContent(content) {
     var UTF8_BOM = "\ufeff";
 
     // removing the UTF8 bom because it brakes thing like #header1 in the beginning of the document
@@ -104,19 +97,15 @@ define(function(require, exports, module) {
     }
   };
 
-  exports.getContent = function() {
+  function getContent() {
     //$('#'+containerElID).html();
     console.log("Not implemented");
   };
-  
-  // Extension Vars
-  exports.Title = extensionTitle;
-  exports.ID = extensionID;
-  exports.Type = extensionType;
-  exports.Icon = extensionIcon;
-  exports.Version = extensionVersion;
-  exports.ManifestVersion = extensionManifestVersion;
-  exports.License = extensionLicense;
-  exports.SupportedFileTypes = extensionSupportedFileTypes;
 
+  exports.init = init;
+  exports.getContent = getContent;
+  exports.setContent = setContent;
+  exports.viewerMode = viewerMode;
+  exports.setFileType = setFileType;
+  
 });

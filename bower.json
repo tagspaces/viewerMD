@@ -1,7 +1,7 @@
 {
   "name": "Markdown Reader",
   "id": "viewerMD",
-  "description": "A TagSpaces extension allowing .",
+  "description": "A TagSpaces extension allowing reading of markdown files.",
   "type": "viewer",
   "version": "1.0.0",
   "dependencies": {

@@ -24,7 +24,6 @@ define(function(require, exports, module) {
     $containerElement = $('#' + containerElID);
 
     currentFilePath = filePath;
-
     $containerElement.empty();
     $containerElement.css("background-color", "white");
     $containerElement.append($('<iframe>', {
@@ -82,6 +81,10 @@ define(function(require, exports, module) {
     }
 
     var fileDirectory = TSCORE.TagUtils.extractContainingDirectoryPath(currentFilePath);
+
+    if (isWeb) {
+      fileDirectory = TSCORE.TagUtils.extractContainingDirectoryPath(location.href) + "/" + fileDirectory;
+    }
 
     var cleanedContent = content.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "");
     var mdContent = md2htmlConverter(cleanedContent);

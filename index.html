@@ -48,6 +48,9 @@
     <li><a id="aboutButton" data-toggle="modal" data-target="#aboutExtensionModal">
       <i class="fa fa-comment fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerMD:about"></span>
     </a></li>
+      <li><a id="MDhelpButton" data-toggle="modal" data-target="#markdownhelpModal">
+      <i class="fa fa-info fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerMD:MDHelp"></span>
+      </a></li>
   </ul>
 </div>
 <div class="modal" id="aboutExtensionModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -66,6 +69,70 @@
         </ul>
         <h4>License of the extension</h4>
         <iframe style="width: 100%; height: 350px; border: 0px;" src="LICENSE.txt"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true"><i class="fa fa-check fa-lg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="markdownhelpModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+        <h4 class="modal-title" data-i18n="ns.viewerMD:MDHelpTitle"></h4>
+      </div>
+      <div class="modal-body">
+          <table>
+           <tbody>
+           <tr>
+               <td><strong>Bold</strong></td>
+               <td>**bold**</td>
+           </tr>
+           <tr>
+               <td><i>Italics</i></td>
+               <td>*italics*</td>
+           </tr>
+           <tr>
+               <td><del>Strikethrough</del></td>
+               <td>~~strikethrough~~</td>
+           </tr>
+           <tr>
+               <td>Header</td>
+               <td># H1     ## H2     ### H3</td>
+           </tr>
+           <tr>
+               <td><li>item</li></td>
+               <td>* item</td>
+           </tr>
+           <tr>
+               <td>Blockquote</td>
+               <td>&gt; blockquote</td>
+           </tr>
+           <tr>
+               <td><span class="trpChatText"><span class="mention">@somebody</span> (mention)</span></td>
+               <td>@somebody</td>
+           </tr>
+           <tr>
+               <td><a href="http://www.youtube.com/watch?v=2342342342" target="_rick">Link</a></td>
+               <td>[title](http://)</td>
+           </tr>
+           <tr>
+               <td>Image</td>
+               <td>![alt](http://)</td>
+           </tr>
+           <tr>
+               <td><code>code</code></td>
+               <td>`code`</td>
+           </tr>
+           <tr>
+               <td><pre style="display: inline-block; margin: 4px 0"><code><span class="keyword">var </span>code = <span class="string">"formatted"</span>;</code></pre></td>
+               <td style="line-height: 100%">``` <i style="color: rgba(0,0,0,0.5)">(shift+enter for line break)</i><br>var code = "formatted";<br>```</td>
+           </tr>
+           </tbody>
+        </table>
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true"><i class="fa fa-check fa-lg"></i>

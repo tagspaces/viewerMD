@@ -6,5 +6,7 @@
     "print": "Print",
     "about": "About",
     "aboutTitle": "About ViewerMD extension",
+    "MDHelp": "MD Help",
+    "MDHelpTitle": "Help for the markdown viewer ",
     "-": "-"
 }

@@ -45,12 +45,12 @@
     <li><a id="printButton">
       <i class="fa fa-print fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerMD:print"></span>
     </a></li>
+    <li><a id="mdHelpButton" data-toggle="modal" data-target="#markdownHelpModal">
+      <i class="fa fa-info fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerMD:MDHelp"></span>
+    </a></li>
     <li><a id="aboutButton" data-toggle="modal" data-target="#aboutExtensionModal">
       <i class="fa fa-comment fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerMD:about"></span>
     </a></li>
-      <li><a id="MDhelpButton" data-toggle="modal" data-target="#markdownhelpModal">
-      <i class="fa fa-info fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerMD:MDHelp"></span>
-      </a></li>
   </ul>
 </div>
 <div class="modal" id="aboutExtensionModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -77,7 +77,7 @@
     </div>
   </div>
 </div>
-<div class="modal" id="markdownhelpModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal" id="markdownHelpModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -112,7 +112,7 @@
                <td>&gt; blockquote</td>
            </tr>
            <tr>
-               <td><a href="http://www.youtube.com/watch?v=2342342342" target="_rick">Link</a></td>
+               <td><a href="https://www.youtube.com/watch?v=8rMo5EFAqgM" target="_blank">Link</a></td>
                <td>[title](http://)</td>
            </tr>
            <tr>
@@ -125,7 +125,7 @@
            </tr>
            <tr>
                <td><pre style="display: inline-block; margin: 4px 0"><code><span class="keyword">var </span>code = <span class="string">"formatted"</span>;</code></pre></td>
-               <td style="line-height: 100%">``` <i style="color: rgba(0,0,0,0.5)">(shift+enter for line break)</i><br>var code = "formatted";<br>```</td>
+               <td style="line-height: 100%">``` <i style="color: rgba(0,0,0,0.5)">(for line break click shift+enter)</i><br>var code = "formatted";<br>```</td>
            </tr>
            </tbody>
         </table>

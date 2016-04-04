@@ -24,6 +24,21 @@ $(document).ready(function() {
   isCordova = parent.isCordova;
   isWin = parent.isWin;
   isWeb = parent.isWeb;
+  
+  
+  $('#aboutExtensionModal').on('show.bs.modal', function() {
+    $.ajax({
+      url: 'README.md',
+      type: 'GET'
+    })
+    .done(function(mdData) {
+      //console.log("DATA: " + mdData);
+      $("#aboutExtensionModal .modal-body").html(marked(mdData));
+    })
+    .fail(function(data) {
+      console.warn("Loading file failed " + data);
+    });
+  });  
 
   var $htmlContent = $("#htmlContent");
 

@@ -33,12 +33,33 @@ $(document).ready(function() {
     })
     .done(function(mdData) {
       //console.log("DATA: " + mdData);
-      $("#aboutExtensionModal .modal-body").html(marked(mdData));
+      if (marked) {
+        var modalBody = $("#aboutExtensionModal .modal-body");
+        modalBody.html(marked(mdData, { sanitize: true }));
+        handleLinks(modalBody);
+      } else {
+        console.log("markdown to html transformer not found");
+      }        
     })
     .fail(function(data) {
       console.warn("Loading file failed " + data);
     });
   });  
+
+  function handleLinks($element) {
+    $element.find("a[href]").each(function() {
+      var currentSrc = $(this).attr("href");
+      var path;
+      $(this).bind('click', function(e) {
+        e.preventDefault();
+        if (path) {
+          currentSrc = encodeURIComponent(path);
+        }
+        var msg = {command: "openLinkExternally", link : currentSrc};
+        window.parent.postMessage(JSON.stringify(msg), "*");
+      });
+    });
+  }
 
   var $htmlContent = $("#htmlContent");
 

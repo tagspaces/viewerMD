@@ -52,12 +52,8 @@ $(document).ready(function() {
   function handleLinks($element) {
     $element.find("a[href]").each(function() {
       var currentSrc = $(this).attr("href");
-      var path;
       $(this).bind('click', function(e) {
         e.preventDefault();
-        if (path) {
-          currentSrc = encodeURIComponent(path);
-        }
         var msg = {command: "openLinkExternally", link : currentSrc};
         window.parent.postMessage(JSON.stringify(msg), "*");
       });

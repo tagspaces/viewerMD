@@ -25,6 +25,9 @@ $(document).ready(function() {
   isWin = parent.isWin;
   isWeb = parent.isWeb;
   
+  $(document).on('drop dragend dragenter dragover', function(event) {
+    event.preventDefault();
+  });
   
   $('#aboutExtensionModal').on('show.bs.modal', function() {
     $.ajax({

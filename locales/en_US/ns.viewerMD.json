@@ -5,8 +5,8 @@
     "changeTheme": "Change Theme",
     "print": "Print",
     "about": "About",
-    "aboutTitle": "About ViewerMD extension",
-    "MDHelp": "MD Help",
-    "MDHelpTitle": "Help for the markdown viewer ",
+    "aboutTitle": "About Markdown Viewer Extension",
+    "MDHelp": "MarkDown Help",
+    "MDHelpTitle": "Short MarkDown Tutorial",
     "-": "-"
 }

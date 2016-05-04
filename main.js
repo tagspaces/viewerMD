@@ -28,26 +28,24 @@ $(document).ready(function() {
   $(document).on('drop dragend dragenter dragover', function(event) {
     event.preventDefault();
   });
-  
-  $('#aboutExtensionModal').on('show.bs.modal', function() {
+
+  $('#aboutExtensionModal').on('show.bs.modal' , function() {
     $.ajax({
-      url: 'README.md',
+      url: 'README.md' ,
       type: 'GET'
-    })
-    .done(function(mdData) {
-      //console.log("DATA: " + mdData);
+    }).done(function(mdData) {
+      console.log(mdData);
       if (marked) {
         var modalBody = $("#aboutExtensionModal .modal-body");
-        modalBody.html(marked(mdData, { sanitize: true }));
+        modalBody.html(marked(mdData , {sanitize: true}));
         handleLinks(modalBody);
       } else {
         console.log("markdown to html transformer not found");
-      }        
-    })
-    .fail(function(data) {
+      }
+    }).fail(function(data) {
       console.warn("Loading file failed " + data);
     });
-  });  
+  });
 
   function handleLinks($element) {
     $element.find("a[href]").each(function() {
@@ -114,11 +112,17 @@ $(document).ready(function() {
     saveExtSettings();
   });
 
-  $("#printButton").on("click", function() {
-    $(".dropdown-menu").dropdown('toggle');
-    window.print();
+  $("#aboutButton").on("click", function(e) {
+    $("#aboutExtensionModal").modal({show: true});
   });
 
+  $("#mdHelpButton").on("click", function(e) {
+    $("#markdownHelpModal").modal({show: true});
+  });
+
+  $("#printButton").on("click", function(e) {
+    window.print();
+  });
   if (isCordova) {
     $("#printButton").hide();
   }

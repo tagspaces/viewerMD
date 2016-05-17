@@ -3,10 +3,11 @@
     "zoomIn": "Zoom In",
     "zoomReset": "Zoom Reset",
     "changeTheme": "Change Theme",
+    "resetTheme": "Reset Theme",
     "print": "Print",
     "about": "About",
-    "aboutTitle": "About ViewerMD extension",
-    "MDHelp": "MD Help",
-    "MDHelpTitle": "Help for the markdown viewer ",
+    "aboutTitle": "About Markdown Viewer",
+    "MDHelp": "MarkDown Help",
+    "MDHelpTitle": "Short MarkDown Tutorial",
     "-": "-"
 }

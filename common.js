@@ -30,6 +30,15 @@ $(document).ready(function() {
     cancelSearch();
   });
 
+  $(document).on('click' , function(event) {
+    fireHideAllMenusEvent();
+  });
+
+  function fireHideAllMenusEvent() {
+    var msg = {command: "hideAllMenus"};
+    window.parent.postMessage(JSON.stringify(msg), "*");
+  }
+
   initSearch();
 });
 function showSearchPanel(e) {

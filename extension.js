@@ -99,7 +99,6 @@ define(function(require, exports, module) {
       }, 500);
     }
   }
-
   function getContent() {
     //$('#'+containerElID).html();
     console.log("Not implemented");

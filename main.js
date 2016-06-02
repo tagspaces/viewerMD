@@ -8,6 +8,8 @@ var isCordova;
 var isWin;
 var isWeb;
 
+var $htmlContent;
+
 $(document).ready(function() {
   function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -24,30 +26,29 @@ $(document).ready(function() {
   isCordova = parent.isCordova;
   isWin = parent.isWin;
   isWeb = parent.isWeb;
-  
+
   $(document).on('drop dragend dragenter dragover', function(event) {
     event.preventDefault();
   });
-  
-  $('#aboutExtensionModal').on('show.bs.modal', function() {
+
+  $('#aboutExtensionModal').on('show.bs.modal' , function() {
     $.ajax({
-      url: 'README.md',
+      url: 'README.md' ,
       type: 'GET'
-    })
-    .done(function(mdData) {
-      //console.log("DATA: " + mdData);
+    }).done(function(mdData) {
+      console.log(mdData);
       if (marked) {
         var modalBody = $("#aboutExtensionModal .modal-body");
-        modalBody.html(marked(mdData, { sanitize: true }));
+        modalBody.html(marked(mdData , {sanitize: true}));
         handleLinks(modalBody);
       } else {
         console.log("markdown to html transformer not found");
-      }        
+      }
     })
     .fail(function(data) {
       console.warn("Loading file failed " + data);
     });
-  });  
+  });
 
   function handleLinks($element) {
     $element.find("a[href]").each(function() {
@@ -60,7 +61,7 @@ $(document).ready(function() {
     });
   }
 
-  var $htmlContent = $("#htmlContent");
+  $htmlContent = $("#htmlContent");
 
   var styles = ['', 'solarized-dark', 'github', 'metro-vibes', 'clearness', 'clearness-dark'];
   var currentStyleIndex = 0;
@@ -82,6 +83,13 @@ $(document).ready(function() {
     if (currentStyleIndex >= styles.length) {
       currentStyleIndex = 0;
     }
+    $htmlContent.removeClass();
+    $htmlContent.addClass('markdown ' + styles[currentStyleIndex] + " " + zoomSteps[currentZoomState]);
+    saveExtSettings();
+  });
+
+  $("#resetStyleButton").bind('click', function() {
+    currentStyleIndex = 0;
     $htmlContent.removeClass();
     $htmlContent.addClass('markdown ' + styles[currentStyleIndex] + " " + zoomSteps[currentZoomState]);
     saveExtSettings();
@@ -114,11 +122,17 @@ $(document).ready(function() {
     saveExtSettings();
   });
 
-  $("#printButton").on("click", function() {
-    $(".dropdown-menu").dropdown('toggle');
-    window.print();
+  $("#aboutButton").on("click", function(e) {
+    $("#aboutExtensionModal").modal({show: true});
   });
 
+  $("#mdHelpButton").on("click", function(e) {
+    $("#markdownHelpModal").modal({show: true});
+  });
+
+  $("#printButton").on("click", function(e) {
+    window.print();
+  });
   if (isCordova) {
     $("#printButton").hide();
   }
@@ -148,10 +162,11 @@ $(document).ready(function() {
 });
 
 function setContent(content, fileDirectory) {
-  var $htmlContent = $('#htmlContent');
+  $htmlContent = $("#htmlContent");
   $htmlContent.append(content);
+  console.log('SHOW MD CONTENT : ' + content);
 
-  $("base").attr("href", fileDirectory + "//");
+  //$("base").attr("href", fileDirectory + "//");
 
   if (fileDirectory.indexOf("file://") === 0) {
     fileDirectory = fileDirectory.substring(("file://").length, fileDirectory.length);

@@ -11,7 +11,6 @@
   <script type="text/javascript" src="../../libs/mousetrap/mousetrap.min.js"></script>
   <script type="text/javascript" src="main.js"></script>
   <script type="text/javascript" src="common.js"></script>
-  <link rel="stylesheet" href="../../assets/tagspaces.css"/>
   <link rel="stylesheet" href="extension.css"/>
   <link rel="stylesheet" href="css/markdown.css"/>
   <link rel="stylesheet" href="css/github.css"/>
@@ -51,6 +50,9 @@
     <li><a id="changeStyleButton">
       <i class="fa fa-adjust fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerMD:changeTheme"></span>
     </a></li>
+    <li><a id="resetStyleButton">
+      <i class="fa fa-circle-o fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerMD:resetTheme"></span>
+    </a></li>
     <li class="divider"></li>
     <li><a id="zoomOutButton">
       <i class="fa fa-search-minus fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerMD:zoomOut"></span>
@@ -65,15 +67,15 @@
     <li><a id="printButton">
       <i class="fa fa-print fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerMD:print"></span>
     </a></li>
-    <li><a id="mdHelpButton" data-toggle="modal" data-target="#markdownHelpModal">
+    <li><a id="mdHelpButton">
       <i class="fa fa-info fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerMD:MDHelp"></span>
     </a></li>
-    <li><a id="aboutButton" data-toggle="modal" data-target="#aboutExtensionModal">
+    <li><a id="aboutButton">
       <i class="fa fa-comment fa-lg fa-fw"></i>&nbsp;<span data-i18n="ns.viewerMD:about"></span>
     </a></li>
   </ul>
 </div>
-<div class="modal" id="aboutExtensionModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fullScreenMobile" id="aboutExtensionModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -88,7 +90,7 @@
     </div>
   </div>
 </div>
-<div class="modal" id="markdownHelpModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fullScreenMobile" id="markdownHelpModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

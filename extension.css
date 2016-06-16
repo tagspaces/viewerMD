@@ -1,3 +1,6 @@
+@import '../../assets/extensions.css';
+@import 'libs/extCommons/common.css';
+
 body {
   font-size: 13px;
 }

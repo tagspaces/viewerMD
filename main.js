@@ -88,6 +88,11 @@ $(document).ready(function() {
     saveExtSettings();
   });
 
+  $("#mdHelpButton").on("click", function(e) {
+    $("#markdownHelpModal").modal({show: true});
+  });
+
+
   // Init internationalization
   $.i18n.init({
     ns: {namespaces: ['ns.viewerMD']},

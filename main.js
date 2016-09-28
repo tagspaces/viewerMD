@@ -88,11 +88,6 @@ $(document).ready(function() {
     saveExtSettings();
   });
 
-  $("#mdHelpButton").on("click", function(e) {
-    $("#markdownHelpModal").modal({show: true});
-  });
-
-
   // Init internationalization
   $.i18n.init({
     ns: {namespaces: ['ns.viewerMD']},
@@ -120,7 +115,6 @@ $(document).ready(function() {
 function setContent(content, fileDirectory) {
   $htmlContent = $("#htmlContent");
   $htmlContent.append(content);
-  console.log('SHOW MD CONTENT : ' + content);
 
   //$("base").attr("href", fileDirectory + "//");
 

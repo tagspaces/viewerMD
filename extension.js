@@ -45,7 +45,7 @@ define(function(require, exports, module) {
         //},
         gfm: true,
         tables: true,
-        breaks: false,
+        breaks: true,
         pedantic: false,
         smartLists: true,
         smartypants: false

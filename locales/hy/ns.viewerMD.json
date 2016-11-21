@@ -1,10 +1,14 @@
 {
+    "findInDocument": "Find in document",
+    "startSearch": "Start Search",
+    "cancelSearch": "Չեղարկել որոնումը",
     "zoomOut": "Խոշորացնել",
     "zoomIn": "Փոքրացնել",
     "zoomReset": "Սկզբնադիր խոշորացում",
     "changeTheme": "Փոխել թեման",
+    "resetTheme": "Վերականգնել թեման",
     "print": "Տպել",
     "about": "Տեղեկություն",
-    "aboutTitle": "ViewerMD հավելվածի մասին",
+    "aboutTitle": "About Markdown Viewer",
     "-": "-"
 }

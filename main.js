@@ -131,8 +131,8 @@ function setContent(content, fileDirectory) {
     );
   };
 
-  // fixing embedding of local images
-  $htmlContent.find("img[src]").each(function() {
+  // fixing embedding of local image, audio and video files
+  $htmlContent.find("img[src], source[src]").each(function() {
     var currentSrc = $(this).attr("src");
     if (!hasURLProtocol(currentSrc)) {
       var path = (isWeb ? "" : "file://") + fileDirectory + "/" + currentSrc;

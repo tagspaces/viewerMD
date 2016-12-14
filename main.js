@@ -8,7 +8,7 @@ var isCordova;
 var isWin;
 var isWeb;
 
-var $htmlContent;
+var $mdContent;
 
 $(document).ready(function() {
   function getParameterByName(name) {
@@ -27,7 +27,7 @@ $(document).ready(function() {
   isWin = parent.isWin;
   isWeb = parent.isWeb;
 
-  $htmlContent = $("#htmlContent");
+  $mdContent = $("#mdContent");
 
   var styles = ['', 'solarized-dark', 'github', 'metro-vibes', 'clearness', 'clearness-dark'];
   var currentStyleIndex = 0;
@@ -41,23 +41,23 @@ $(document).ready(function() {
     currentZoomState = extSettings.zoomState;
   }
 
-  $htmlContent.removeClass();
-  $htmlContent.addClass('markdown ' + styles[currentStyleIndex] + " " + zoomSteps[currentZoomState]);
+  $mdContent.removeClass();
+  $mdContent.addClass('markdown ' + styles[currentStyleIndex] + " " + zoomSteps[currentZoomState]);
 
   $("#changeStyleButton").bind('click', function() {
     currentStyleIndex = currentStyleIndex + 1;
     if (currentStyleIndex >= styles.length) {
       currentStyleIndex = 0;
     }
-    $htmlContent.removeClass();
-    $htmlContent.addClass('markdown ' + styles[currentStyleIndex] + " " + zoomSteps[currentZoomState]);
+    $mdContent.removeClass();
+    $mdContent.addClass('markdown ' + styles[currentStyleIndex] + " " + zoomSteps[currentZoomState]);
     saveExtSettings();
   });
 
   $("#resetStyleButton").bind('click', function() {
     currentStyleIndex = 0;
-    $htmlContent.removeClass();
-    $htmlContent.addClass('markdown ' + styles[currentStyleIndex] + " " + zoomSteps[currentZoomState]);
+    $mdContent.removeClass();
+    $mdContent.addClass('markdown ' + styles[currentStyleIndex] + " " + zoomSteps[currentZoomState]);
     saveExtSettings();
   });
 
@@ -66,8 +66,8 @@ $(document).ready(function() {
     if (currentZoomState >= zoomSteps.length) {
       currentZoomState = 6;
     }
-    $htmlContent.removeClass();
-    $htmlContent.addClass('markdown ' + styles[currentStyleIndex] + " " + zoomSteps[currentZoomState]);
+    $mdContent.removeClass();
+    $mdContent.addClass('markdown ' + styles[currentStyleIndex] + " " + zoomSteps[currentZoomState]);
     saveExtSettings();
   });
 
@@ -76,15 +76,15 @@ $(document).ready(function() {
     if (currentZoomState < 0) {
       currentZoomState = 0;
     }
-    $htmlContent.removeClass();
-    $htmlContent.addClass('markdown ' + styles[currentStyleIndex] + " " + zoomSteps[currentZoomState]);
+    $mdContent.removeClass();
+    $mdContent.addClass('markdown ' + styles[currentStyleIndex] + " " + zoomSteps[currentZoomState]);
     saveExtSettings();
   });
 
   $("#zoomResetButton").bind('click', function() {
     currentZoomState = 3;
-    $htmlContent.removeClass();
-    $htmlContent.addClass('markdown ' + styles[currentStyleIndex] + " " + zoomSteps[currentZoomState]);
+    $mdContent.removeClass();
+    $mdContent.addClass('markdown ' + styles[currentStyleIndex] + " " + zoomSteps[currentZoomState]);
     saveExtSettings();
   });
 
@@ -113,8 +113,8 @@ $(document).ready(function() {
 });
 
 function setContent(content, fileDirectory) {
-  $htmlContent = $("#htmlContent");
-  $htmlContent.append(content);
+  $mdContent = $("#mdContent");
+  $mdContent.append(content);
 
   //$("base").attr("href", fileDirectory + "//");
 
@@ -132,7 +132,7 @@ function setContent(content, fileDirectory) {
   };
 
   // fixing embedding of local image, audio and video files
-  $htmlContent.find("img[src], source[src]").each(function() {
+  $mdContent.find("img[src], source[src]").each(function() {
     var currentSrc = $(this).attr("src");
     if (!hasURLProtocol(currentSrc)) {
       var path = (isWeb ? "" : "file://") + fileDirectory + "/" + currentSrc;
@@ -140,7 +140,7 @@ function setContent(content, fileDirectory) {
     }
   });
 
-  $htmlContent.find("a[href]").each(function() {
+  $mdContent.find("a[href]").each(function() {
     var currentSrc = $(this).attr("href");
     var path;
 

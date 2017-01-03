@@ -1,14 +1,14 @@
 {
-    "findInDocument": "Find in document",
-    "startSearch": "Start Search",
-    "cancelSearch": "Cancel Search",
-    "zoomOut": "Zoom Out",
-    "zoomIn": "Zoom In",
-    "zoomReset": "Zoom Reset",
-    "changeTheme": "Change Theme",
-    "resetTheme": "Reset Theme",
-    "print": "Print",
-    "about": "About",
-    "aboutTitle": "About Markdown Viewer",
-    "-": "-"
+    "findInDocument": "Find i dokument ",
+    "startSearch": "Start søgning ",
+    "cancelSearch": "Annuller søgning",
+    "zoomOut": "Zoom ud ",
+    "zoomIn": "Zoom ind ",
+    "zoomReset": "Nulstil zoom ",
+    "changeTheme": "Ændre tema ",
+    "resetTheme": "Nulstil tema ",
+    "print": "Udskriv ",
+    "about": "Om ",
+    "aboutTitle": "Om Markdown Viewer",
+    "-": "- "
 }

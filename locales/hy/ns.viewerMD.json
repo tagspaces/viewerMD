@@ -1,6 +1,6 @@
 {
-    "findInDocument": "Find in document",
-    "startSearch": "Start Search",
+    "findInDocument": "Գտնել փաստաթղթում",
+    "startSearch": "Սկսել որոնումը",
     "cancelSearch": "Չեղարկել որոնումը",
     "zoomOut": "Խոշորացնել",
     "zoomIn": "Փոքրացնել",
@@ -9,6 +9,6 @@
     "resetTheme": "Վերականգնել թեման",
     "print": "Տպել",
     "about": "Տեղեկություն",
-    "aboutTitle": "About Markdown Viewer",
+    "aboutTitle": "Նշագրման ձևաչափի դիտակի մասին",
     "-": "-"
 }

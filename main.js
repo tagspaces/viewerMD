@@ -1,16 +1,16 @@
-/* Copyright (c) 2013-2016 The TagSpaces Authors.
+/* Copyright (c) 2013-2017 The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
 
 /* globals marked */
 "use strict";
 
-var isCordova;
-var isWin;
-var isWeb;
-
+var isWeb = document.URL.indexOf( 'http' ) === 0;
 var $mdContent;
 
-$(document).ready(function() {
+$(document).ready(init);
+
+function init() {
+
   function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -22,10 +22,6 @@ $(document).ready(function() {
 
   var extSettings;
   loadExtSettings();
-
-  isCordova = parent.isCordova;
-  isWin = parent.isWin;
-  isWeb = parent.isWeb;
 
   $mdContent = $("#mdContent");
 
@@ -110,7 +106,7 @@ $(document).ready(function() {
     extSettings = JSON.parse(localStorage.getItem("viewerMDSettings"));
   }
 
-});
+}
 
 function setContent(content, fileDirectory) {
   $mdContent = $("#mdContent");
@@ -158,5 +154,4 @@ function setContent(content, fileDirectory) {
       window.parent.postMessage(JSON.stringify(msg), "*");
     });
   });
-
 }

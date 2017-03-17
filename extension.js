@@ -1,17 +1,14 @@
-/* Copyright (c) 2013-2016 The TagSpaces Authors.
+/* Copyright (c) 2013-2017 The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
 
 define(function(require, exports, module) {
   "use strict";
 
-  // GFM https://help.github.com/articles/github-flavored-markdown
-
   var extensionID = "viewerMD"; // ID should be equal to the directory name where the ext. is located
-  var extensionSupportedFileTypes = ["md", "markdown", "mdown"];
+  var TSCORE = require('tscore');
 
   console.log("Loading " + extensionID);
 
-  var TSCORE = require("tscore");
   var md2htmlConverter;
   var containerElID;
   var currentFilePath;
@@ -19,7 +16,7 @@ define(function(require, exports, module) {
   var extensionDirectory = TSCORE.Config.getExtensionPath() + "/" + extensionID;
 
   function init(filePath, containerElementID) {
-    console.log("Initalization MD Viewer...");
+    console.log("Initialization MD Viewer...");
     containerElID = containerElementID;
     $containerElement = $('#' + containerElID);
 
@@ -29,46 +26,21 @@ define(function(require, exports, module) {
     $containerElement.append($('<iframe>', {
       sandbox: "allow-same-origin allow-scripts allow-modals",
       id: "iframeViewer",
-      "nwdisable": "",
+      //"nwdisable": "",
       //"nwfaketop": "",
       "src": extensionDirectory + "/index.html?&locale=" + TSCORE.currentLanguage,
     }));
 
-    require([
-      extensionDirectory + '/libs/marked/lib/marked.js',
-    ], function(marked) {
-      md2htmlConverter = marked;
-      md2htmlConverter.setOptions({
-        renderer: new marked.Renderer(),
-        //highlight: function (code) {
-        //    //return require([extensionDirectory+'/highlightjs/highlight.js']).highlightAuto(code).value;
-        //},
-        gfm: true,
-        tables: true,
-        breaks: true,
-        pedantic: false,
-        smartLists: true,
-        smartypants: false
-      });
-      
-      TSCORE.IO.loadTextFilePromise(filePath).then(function(content) {
-        exports.setContent(content);
-      }, 
-      function(error) {
-        TSCORE.hideLoadingAnimation();
-        TSCORE.showAlertDialog("Loading " + filePath + " failed.");
-        console.error("Loading file " + filePath + " failed " + error);
-      });
+    TSCORE.IO.loadTextFilePromise(filePath).then(function(content) {
+      setContent(content);
     });
   }
 
   function setFileType() {
-
     console.log("setFileType not supported on this extension");
   }
 
   function viewerMode(isViewerMode) {
-
     // set readonly
   }
 
@@ -87,7 +59,7 @@ define(function(require, exports, module) {
     }
 
     var cleanedContent = content.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "");
-    var mdContent = md2htmlConverter(cleanedContent);
+    var mdContent = TSCORE.Utils.convertMarkdown(cleanedContent);
 
     var contentWindow = document.getElementById("iframeViewer").contentWindow;
     if (typeof contentWindow.setContent === "function") {
@@ -99,8 +71,8 @@ define(function(require, exports, module) {
       }, 500);
     }
   }
+
   function getContent() {
-    //$('#'+containerElID).html();
     console.log("Not implemented");
   }
 
@@ -109,5 +81,5 @@ define(function(require, exports, module) {
   exports.setContent = setContent;
   exports.viewerMode = viewerMode;
   exports.setFileType = setFileType;
-  
+
 });

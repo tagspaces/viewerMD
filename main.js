@@ -1,7 +1,6 @@
 /* Copyright (c) 2013-2017 The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
 
-/* globals marked */
 "use strict";
 
 var isWeb = document.URL.indexOf( 'http' ) === 0;
@@ -110,7 +109,7 @@ function init() {
 
 function setContent(content, fileDirectory) {
   $mdContent = $("#mdContent");
-  $mdContent.append(content);
+  $mdContent.empty().append(content);
 
   //$("base").attr("href", fileDirectory + "//");
 

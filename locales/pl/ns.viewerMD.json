@@ -1,6 +1,6 @@
 {
-    "findInDocument": "Find in document",
-    "startSearch": "Start Search",
+    "findInDocument": "Znajdź w dokumencie",
+    "startSearch": "Rozpocznij wyszukiwanie",
     "cancelSearch": "Anuluj wyszukiwanie",
     "zoomOut": "Pomniejsz",
     "zoomIn": "Powiększ",
@@ -8,7 +8,7 @@
     "changeTheme": "Zmień motyw",
     "resetTheme": "Resetuj motyw",
     "print": "Drukuj",
-    "about": "O programie",
-    "aboutTitle": "About Markdown Viewer",
+    "about": "Informacje o rozszerzeniu",
+    "aboutTitle": "O rozszerzeniu Markdown Viewer",
     "-": "-"
 }

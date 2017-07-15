@@ -1,6 +1,6 @@
 {
-    "findInDocument": "Find in document",
-    "startSearch": "Start Search",
+    "findInDocument": "在文档中查找",
+    "startSearch": "开始搜索",
     "cancelSearch": "取消搜索",
     "zoomOut": "缩小",
     "zoomIn": "放大",
@@ -9,6 +9,6 @@
     "resetTheme": "重置主题",
     "print": "打印",
     "about": "关于",
-    "aboutTitle": "About Markdown Viewer",
+    "aboutTitle": "关于Markdown Viewer",
     "-": "-"
 }

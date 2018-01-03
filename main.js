@@ -1,6 +1,6 @@
 /* Copyright (c) 2013-present The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
-
+/* globals marked */
 'use strict';
 
 var $mdContent;
@@ -111,6 +111,7 @@ function init() {
 
 function setContent(content, fileDirectory) {
   $mdContent = $('#mdContent');
+  content = marked(content);
   $mdContent.empty().append(content);
 
   //$('base').attr('href', fileDirectory + '//');
@@ -155,6 +156,7 @@ function setContent(content, fileDirectory) {
         if (path) {
           currentSrc = encodeURIComponent(path);
         }
+
         var msg = {command: 'openLinkExternally', link : currentSrc};
         window.parent.postMessage(JSON.stringify(msg), '*');
       });

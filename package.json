@@ -10,15 +10,5 @@
     "url": "https://www.tagspaces.org"
   },
   "license": "MIT",
-  "dependencies": {
-    "bootstrap": "~3.3.7",
-    "bootswatch": "~3.3.7",
-    "font-awesome": "^4.7.0",
-    "jquery": "~2.2.4",
-    "mousetrap": "~1.5.3",
-    "extCommon": "https://github.com/tagspaces/extCommons.git#next",
-    "marked": "~0.3.6",
-    "i18next": "~8.1.0",
-    "jquery-i18next": "~1.2.1"
-  }
+  "dependencies": {}
 }

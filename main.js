@@ -4,7 +4,6 @@
 'use strict';
 
 var $mdContent;
-var loadContentExternally = true;
 
 $(document).ready(init);
 
@@ -12,6 +11,7 @@ function init() {
   var locale = getParameterByName('locale');
   var filepath = getParameterByName('file');
 
+  sendMessageToHost({ command: 'loadDefaultTextContent' });
 
   var extSettings;
   loadExtSettings();
@@ -155,8 +155,7 @@ function setContent(content, fileDirectory) {
           currentSrc = encodeURIComponent(path);
         }
 
-        var msg = {command: 'openLinkExternally', link : currentSrc};
-        window.parent.postMessage(JSON.stringify(msg), '*');
+        sendMessageToHost({command: 'openLinkExternally', link : currentSrc});
       });
     }
   });

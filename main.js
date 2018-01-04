@@ -5,20 +5,13 @@
 
 var $mdContent;
 var loadContentExternally = true;
-var isWeb = (document.URL.startsWith('http') && !document.URL.startsWith('http://localhost:1212/'));
 
 $(document).ready(init);
 
 function init() {
-
-  function getParameterByName(name) {
-    name = name.replace(/[\[]/, '\\\[').replace(/[\]]/, '\\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'),
-      results = regex.exec(location.search);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-  }
-
   var locale = getParameterByName('locale');
+  var filepath = getParameterByName('file');
+
 
   var extSettings;
   loadExtSettings();
@@ -107,6 +100,11 @@ function init() {
     extSettings = JSON.parse(localStorage.getItem('viewerMDSettings'));
   }
 
+  /* TODO checks if works on cordova and web
+  getFileContentPromise(filepath, 'text').then((content) => {
+    setContent(content, filepath.substring(0, filepath.lastIndexOf('/')));
+  }).catch(error => console.log('Error getting file content: ' + error));
+  */
 }
 
 function setContent(content, fileDirectory) {

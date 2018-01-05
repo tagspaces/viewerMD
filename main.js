@@ -8,10 +8,10 @@ var $mdContent;
 $(document).ready(init);
 
 function init() {
+  sendMessageToHost({ command: 'loadDefaultTextContent' });
+
   var locale = getParameterByName('locale');
   var filepath = getParameterByName('file');
-
-  sendMessageToHost({ command: 'loadDefaultTextContent' });
 
   var extSettings;
   loadExtSettings();

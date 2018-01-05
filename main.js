@@ -2,14 +2,13 @@
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
 /* globals marked */
 'use strict';
+sendMessageToHost({ command: 'loadDefaultTextContent' });
 
 var $mdContent;
 
 $(document).ready(init);
 
 function init() {
-  sendMessageToHost({ command: 'loadDefaultTextContent' });
-
   var locale = getParameterByName('locale');
   var filepath = getParameterByName('file');
 

@@ -100,11 +100,12 @@ function init() {
     extSettings = JSON.parse(localStorage.getItem('viewerMDSettings'));
   }
 
-  /* TODO checks if works on cordova and web
+  // TODO checks if works on cordova and web
+/*
   getFileContentPromise(filepath, 'text').then((content) => {
     setContent(content, filepath.substring(0, filepath.lastIndexOf('/')));
   }).catch(error => console.log('Error getting file content: ' + error));
-  */
+*/
 }
 
 function setContent(content, fileDirectory) {

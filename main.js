@@ -120,44 +120,37 @@ function init() {
     saveExtSettings();
   });
 
-  // Handling i18n
-  // TODO checks if works on cordova and web
-  var i18noptions = {
-    lng: locale,
-    debug: true,
-    resources: {
-      en_US: {
-        translation: {
-          findInDocument: 'Find in document',
-          startSearch: 'Start Search',
-          cancelSearch: 'Cancel Search',
-          zoomOut: 'Zoom Out',
-          zoomIn: 'Zoom In',
-          zoomReset: 'Zoom Reset',
-          changeTheme: 'Change Theme',
-          resetTheme: 'Reset Theme',
-          print: 'Print',
-          about: 'About',
-          aboutTitle: 'About Markdown Viewer',
-          '-': '-'
-        }
-      }
-    },
-    fallbackLng: 'en_US'
-  };
-
-  getFileContentPromise('./locales/' + locale + '/ns.viewerMD.json', 'text')
-    .then(content => {
-      i18noptions.resources[locale] = {};
-      i18noptions.resources[locale].translation = JSON.parse(content);
-      i18next.init(i18noptions, function() {
-        jqueryI18next.init(i18next, $);
-        // console.log(i18next.t('startSearch'));
-        $('body').localize();
-      });
+  // BEGIN i18n
+  getFileContentPromise('./locales/en_US/ns.viewerMD.json', 'text') // loading fallback lng
+    .then(enLocale => {
+      var i18noptions = {
+        lng: locale,
+        resources: {},
+        fallbackLng: 'en_US'
+      };
+      i18noptions.resources['en_US'] = {};
+      i18noptions.resources['en_US'].translation = JSON.parse(enLocale);
+      getFileContentPromise('./locales/' + locale + '/ns.viewerMD.json', 'text')
+        .then(content => {
+          i18noptions.resources[locale] = {};
+          i18noptions.resources[locale].translation = JSON.parse(content);
+          i18next.init(i18noptions, () => {
+            jqueryI18next.init(i18next, $); // console.log(i18next.t('startSearch'));
+            $('body').localize();
+          });
+          return true;
+        })
+        .catch(error => {
+          console.log('Error getting specific i18n locale: ' + error);
+          i18next.init(i18noptions, () => {
+            jqueryI18next.init(i18next, $); // console.log(i18next.t('startSearch'));
+            $('body').localize();
+          });
+        });
       return true;
     })
-    .catch(error => console.log('Error getting i18n file: ' + error));
+    .catch(error => console.log('Error getting default i18n locale: ' + error));
+  // END i18n
 
   function saveExtSettings() {
     var settings = {

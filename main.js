@@ -1,7 +1,9 @@
 /* Copyright (c) 2013-present The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
 /* globals marked */
+
 'use strict';
+
 sendMessageToHost({ command: 'loadDefaultTextContent' });
 
 var $mdContent;
@@ -17,20 +19,37 @@ function init() {
 
   $mdContent = $('#mdContent');
 
-  var styles = ['', 'solarized-dark', 'github', 'metro-vibes', 'clearness', 'clearness-dark'];
+  var styles = [
+    '',
+    'solarized-dark',
+    'github',
+    'metro-vibes',
+    'clearness',
+    'clearness-dark'
+  ];
   var currentStyleIndex = 0;
   if (extSettings && extSettings.styleIndex) {
     currentStyleIndex = extSettings.styleIndex;
   }
 
-  var zoomSteps = ['zoomSmallest', 'zoomSmaller', 'zoomSmall', 'zoomDefault', 'zoomLarge', 'zoomLarger', 'zoomLargest'];
+  var zoomSteps = [
+    'zoomSmallest',
+    'zoomSmaller',
+    'zoomSmall',
+    'zoomDefault',
+    'zoomLarge',
+    'zoomLarger',
+    'zoomLargest'
+  ];
   var currentZoomState = 3;
   if (extSettings && extSettings.zoomState) {
     currentZoomState = extSettings.zoomState;
   }
 
   $mdContent.removeClass();
-  $mdContent.addClass('markdown ' + styles[currentStyleIndex] + ' ' + zoomSteps[currentZoomState]);
+  $mdContent.addClass(
+    'markdown ' + styles[currentStyleIndex] + ' ' + zoomSteps[currentZoomState]
+  );
 
   $('#changeStyleButton').bind('click', function() {
     currentStyleIndex = currentStyleIndex + 1;
@@ -38,14 +57,24 @@ function init() {
       currentStyleIndex = 0;
     }
     $mdContent.removeClass();
-    $mdContent.addClass('markdown ' + styles[currentStyleIndex] + ' ' + zoomSteps[currentZoomState]);
+    $mdContent.addClass(
+      'markdown ' +
+        styles[currentStyleIndex] +
+        ' ' +
+        zoomSteps[currentZoomState]
+    );
     saveExtSettings();
   });
 
   $('#resetStyleButton').bind('click', function() {
     currentStyleIndex = 0;
     $mdContent.removeClass();
-    $mdContent.addClass('markdown ' + styles[currentStyleIndex] + ' ' + zoomSteps[currentZoomState]);
+    $mdContent.addClass(
+      'markdown ' +
+        styles[currentStyleIndex] +
+        ' ' +
+        zoomSteps[currentZoomState]
+    );
     saveExtSettings();
   });
 
@@ -55,7 +84,12 @@ function init() {
       currentZoomState = 6;
     }
     $mdContent.removeClass();
-    $mdContent.addClass('markdown ' + styles[currentStyleIndex] + ' ' + zoomSteps[currentZoomState]);
+    $mdContent.addClass(
+      'markdown ' +
+        styles[currentStyleIndex] +
+        ' ' +
+        zoomSteps[currentZoomState]
+    );
     saveExtSettings();
   });
 
@@ -65,32 +99,70 @@ function init() {
       currentZoomState = 0;
     }
     $mdContent.removeClass();
-    $mdContent.addClass('markdown ' + styles[currentStyleIndex] + ' ' + zoomSteps[currentZoomState]);
+    $mdContent.addClass(
+      'markdown ' +
+        styles[currentStyleIndex] +
+        ' ' +
+        zoomSteps[currentZoomState]
+    );
     saveExtSettings();
   });
 
   $('#zoomResetButton').bind('click', function() {
     currentZoomState = 3;
     $mdContent.removeClass();
-    $mdContent.addClass('markdown ' + styles[currentStyleIndex] + ' ' + zoomSteps[currentZoomState]);
+    $mdContent.addClass(
+      'markdown ' +
+        styles[currentStyleIndex] +
+        ' ' +
+        zoomSteps[currentZoomState]
+    );
     saveExtSettings();
   });
 
-  // Init internationalization
-  i18next.init({
-    ns: {namespaces: ['ns.viewerMD']},
-    debug: true,
+  // Handling i18n
+  // TODO checks if works on cordova and web
+  var i18noptions = {
     lng: locale,
+    debug: true,
+    resources: {
+      en_US: {
+        translation: {
+          findInDocument: 'Find in document',
+          startSearch: 'Start Search',
+          cancelSearch: 'Cancel Search',
+          zoomOut: 'Zoom Out',
+          zoomIn: 'Zoom In',
+          zoomReset: 'Zoom Reset',
+          changeTheme: 'Change Theme',
+          resetTheme: 'Reset Theme',
+          print: 'Print',
+          about: 'About',
+          aboutTitle: 'About Markdown Viewer',
+          '-': '-'
+        }
+      }
+    },
     fallbackLng: 'en_US'
-  }, function() {
-    jqueryI18next.init(i18next, $);
-    $('[data-i18n]').localize();
-  });
+  };
+
+  getFileContentPromise('./locales/' + locale + '/ns.viewerMD.json', 'text')
+    .then(content => {
+      i18noptions.resources[locale] = {};
+      i18noptions.resources[locale].translation = JSON.parse(content);
+      i18next.init(i18noptions, function() {
+        jqueryI18next.init(i18next, $);
+        // console.log(i18next.t('startSearch'));
+        $('body').localize();
+      });
+      return true;
+    })
+    .catch(error => console.log('Error getting i18n file: ' + error));
 
   function saveExtSettings() {
     var settings = {
-      'styleIndex': currentStyleIndex,
-      'zoomState':  currentZoomState
+      styleIndex: currentStyleIndex,
+      zoomState: currentZoomState
     };
     localStorage.setItem('viewerMDSettings', JSON.stringify(settings));
   }
@@ -98,13 +170,6 @@ function init() {
   function loadExtSettings() {
     extSettings = JSON.parse(localStorage.getItem('viewerMDSettings'));
   }
-
-  // TODO checks if works on cordova and web
-/*
-  getFileContentPromise(filepath, 'text').then((content) => {
-    setContent(content, filepath.substring(0, filepath.lastIndexOf('/')));
-  }).catch(error => console.log('Error getting file content: ' + error));
-*/
 }
 
 function setContent(content, fileDirectory) {
@@ -115,7 +180,10 @@ function setContent(content, fileDirectory) {
   //$('base').attr('href', fileDirectory + '//');
 
   if (fileDirectory.indexOf('file://') === 0) {
-    fileDirectory = fileDirectory.substring(('file://').length, fileDirectory.length);
+    fileDirectory = fileDirectory.substring(
+      'file://'.length,
+      fileDirectory.length
+    );
   }
 
   var hasURLProtocol = function(url) {
@@ -140,7 +208,7 @@ function setContent(content, fileDirectory) {
     var currentSrc = $(this).attr('href');
     var path;
 
-    if(currentSrc.indexOf('#') === 0 ) {
+    if (currentSrc.indexOf('#') === 0) {
       // Leave the default link behaviour by internal links
     } else {
       if (!hasURLProtocol(currentSrc)) {
@@ -155,7 +223,7 @@ function setContent(content, fileDirectory) {
           currentSrc = encodeURIComponent(path);
         }
 
-        sendMessageToHost({command: 'openLinkExternally', link : currentSrc});
+        sendMessageToHost({ command: 'openLinkExternally', link: currentSrc });
       });
     }
   });

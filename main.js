@@ -17,6 +17,8 @@ function init() {
   var extSettings;
   loadExtSettings();
 
+  initI18N(locale, 'ns.viewerMD.json');
+
   $mdContent = $('#mdContent');
 
   var styles = [
@@ -119,38 +121,6 @@ function init() {
     );
     saveExtSettings();
   });
-
-  // BEGIN i18n
-  getFileContentPromise('./locales/en_US/ns.viewerMD.json', 'text') // loading fallback lng
-    .then(enLocale => {
-      var i18noptions = {
-        lng: locale,
-        resources: {},
-        fallbackLng: 'en_US'
-      };
-      i18noptions.resources['en_US'] = {};
-      i18noptions.resources['en_US'].translation = JSON.parse(enLocale);
-      getFileContentPromise('./locales/' + locale + '/ns.viewerMD.json', 'text')
-        .then(content => {
-          i18noptions.resources[locale] = {};
-          i18noptions.resources[locale].translation = JSON.parse(content);
-          i18next.init(i18noptions, () => {
-            jqueryI18next.init(i18next, $); // console.log(i18next.t('startSearch'));
-            $('body').localize();
-          });
-          return true;
-        })
-        .catch(error => {
-          console.log('Error getting specific i18n locale: ' + error);
-          i18next.init(i18noptions, () => {
-            jqueryI18next.init(i18next, $); // console.log(i18next.t('startSearch'));
-            $('body').localize();
-          });
-        });
-      return true;
-    })
-    .catch(error => console.log('Error getting default i18n locale: ' + error));
-  // END i18n
 
   function saveExtSettings() {
     var settings = {

@@ -6,22 +6,22 @@
 
 sendMessageToHost({ command: 'loadDefaultTextContent' });
 
-var $mdContent;
+let $mdContent;
 
 $(document).ready(init);
 
 function init() {
-  var locale = getParameterByName('locale');
-  var filepath = getParameterByName('file');
+  const locale = getParameterByName('locale');
+  const filepath = getParameterByName('file');
 
-  var extSettings;
+  let extSettings;
   loadExtSettings();
 
   initI18N(locale, 'ns.viewerMD.json');
 
   $mdContent = $('#mdContent');
 
-  var styles = [
+  const styles = [
     '',
     'solarized-dark',
     'github',
@@ -29,12 +29,12 @@ function init() {
     'clearness',
     'clearness-dark'
   ];
-  var currentStyleIndex = 0;
+  let currentStyleIndex = 0;
   if (extSettings && extSettings.styleIndex) {
     currentStyleIndex = extSettings.styleIndex;
   }
 
-  var zoomSteps = [
+  const zoomSteps = [
     'zoomSmallest',
     'zoomSmaller',
     'zoomSmall',
@@ -43,7 +43,7 @@ function init() {
     'zoomLarger',
     'zoomLargest'
   ];
-  var currentZoomState = 3;
+  let currentZoomState = 3;
   if (extSettings && extSettings.zoomState) {
     currentZoomState = extSettings.zoomState;
   }
@@ -95,7 +95,7 @@ function init() {
     saveExtSettings();
   });
 
-  $('#zoomOutButton').bind('click', function() {
+  $('#zoomOutButton').bind('click', () => {
     currentZoomState--;
     if (currentZoomState < 0) {
       currentZoomState = 0;
@@ -110,7 +110,7 @@ function init() {
     saveExtSettings();
   });
 
-  $('#zoomResetButton').bind('click', function() {
+  $('#zoomResetButton').bind('click', () => {
     currentZoomState = 3;
     $mdContent.removeClass();
     $mdContent.addClass(
@@ -123,7 +123,7 @@ function init() {
   });
 
   function saveExtSettings() {
-    var settings = {
+    const settings = {
       styleIndex: currentStyleIndex,
       zoomState: currentZoomState
     };
@@ -149,7 +149,7 @@ function setContent(content, fileDirectory) {
     );
   }
 
-  var hasURLProtocol = function(url) {
+  const hasURLProtocol = (url) => {
     return (
       url.indexOf('http://') === 0 ||
       url.indexOf('https://') === 0 ||
@@ -159,28 +159,28 @@ function setContent(content, fileDirectory) {
   };
 
   // fixing embedding of local image, audio and video files
-  $mdContent.find('img[src], source[src]').each(function() {
-    var currentSrc = $(this).attr('src');
+  $mdContent.find('img[src], source[src]').each(() => {
+    let currentSrc = $(this).attr('src');
     if (!hasURLProtocol(currentSrc)) {
-      var path = (isWeb ? '' : 'file://') + fileDirectory + '/' + currentSrc;
+      const path = (isWeb ? '' : 'file://') + fileDirectory + '/' + currentSrc;
       $(this).attr('src', path);
     }
   });
 
-  $mdContent.find('a[href]').each(function() {
-    var currentSrc = $(this).attr('href');
-    var path;
+  $mdContent.find('a[href]').each(() => {
+    let currentSrc = $(this).attr('href');
+    let path;
 
     if (currentSrc.indexOf('#') === 0) {
       // Leave the default link behaviour by internal links
     } else {
       if (!hasURLProtocol(currentSrc)) {
-        var path = (isWeb ? '' : 'file://') + fileDirectory + '/' + currentSrc;
+        const path = (isWeb ? '' : 'file://') + fileDirectory + '/' + currentSrc;
         $(this).attr('href', path);
       }
 
       $(this).off();
-      $(this).on('click', function(e) {
+      $(this).on('click', (e) => {
         e.preventDefault();
         if (path) {
           currentSrc = encodeURIComponent(path);

@@ -1,6 +1,7 @@
 /* Copyright (c) 2013-present The TagSpaces Authors.
  * Use of this source code is governed by the MIT license which can be found in the LICENSE.txt file. */
-/* globals marked */
+
+ /* globals marked, initI18N, getParameterByName, $, sendMessageToHost, isWeb */
 
 'use strict';
 
@@ -53,8 +54,8 @@ function init() {
     'markdown ' + styles[currentStyleIndex] + ' ' + zoomSteps[currentZoomState]
   );
 
-  $('#changeStyleButton').bind('click', function() {
-    currentStyleIndex = currentStyleIndex + 1;
+  $('#changeStyleButton').bind('click', () => {
+    currentStyleIndex += 1;
     if (currentStyleIndex >= styles.length) {
       currentStyleIndex = 0;
     }
@@ -68,7 +69,7 @@ function init() {
     saveExtSettings();
   });
 
-  $('#resetStyleButton').bind('click', function() {
+  $('#resetStyleButton').bind('click', () => {
     currentStyleIndex = 0;
     $mdContent.removeClass();
     $mdContent.addClass(
@@ -80,8 +81,8 @@ function init() {
     saveExtSettings();
   });
 
-  $('#zoomInButton').bind('click', function() {
-    currentZoomState++;
+  $('#zoomInButton').bind('click', () => {
+    currentZoomState += 1;
     if (currentZoomState >= zoomSteps.length) {
       currentZoomState = 6;
     }
@@ -96,7 +97,7 @@ function init() {
   });
 
   $('#zoomOutButton').bind('click', () => {
-    currentZoomState--;
+    currentZoomState -= 1;
     if (currentZoomState < 0) {
       currentZoomState = 0;
     }
@@ -140,7 +141,7 @@ function setContent(content, fileDirectory) {
   content = marked(content);
   $mdContent.empty().append(content);
 
-  //$('base').attr('href', fileDirectory + '//');
+  // $('base').attr('href', fileDirectory + '//');
 
   if (fileDirectory.indexOf('file://') === 0) {
     fileDirectory = fileDirectory.substring(
@@ -159,28 +160,28 @@ function setContent(content, fileDirectory) {
   };
 
   // fixing embedding of local image, audio and video files
-  $mdContent.find('img[src], source[src]').each(() => {
-    let currentSrc = $(this).attr('src');
+  $mdContent.find('img[src], source[src]').each((index, link) => {
+    const currentSrc = $(link).attr('src');
     if (!hasURLProtocol(currentSrc)) {
       const path = (isWeb ? '' : 'file://') + fileDirectory + '/' + currentSrc;
-      $(this).attr('src', path);
+      $(link).attr('src', path);
     }
   });
 
-  $mdContent.find('a[href]').each(() => {
-    let currentSrc = $(this).attr('href');
+  $mdContent.find('a[href]').each((index, link) => {
+    let currentSrc = $(link).attr('href');
     let path;
 
     if (currentSrc.indexOf('#') === 0) {
       // Leave the default link behaviour by internal links
     } else {
       if (!hasURLProtocol(currentSrc)) {
-        const path = (isWeb ? '' : 'file://') + fileDirectory + '/' + currentSrc;
-        $(this).attr('href', path);
+        path = (isWeb ? '' : 'file://') + fileDirectory + '/' + currentSrc;
+        $(link).attr('href', path);
       }
 
-      $(this).off();
-      $(this).on('click', (e) => {
+      $(link).off();
+      $(link).on('click', (e) => {
         e.preventDefault();
         if (path) {
           currentSrc = encodeURIComponent(path);

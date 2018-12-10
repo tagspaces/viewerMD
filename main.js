@@ -18,6 +18,10 @@ function init() {
   let extSettings;
   loadExtSettings();
 
+  $(document).dblclick(() => {
+    sendMessageToHost({ command: 'editDocument' });
+  });
+
   initI18N(locale, 'ns.viewerMD.json');
 
   $mdContent = $('#mdContent');

@@ -15,6 +15,17 @@ function init() {
   const locale = getParameterByName('locale');
   const filepath = getParameterByName('file');
 
+  marked.setOptions({
+    pedantic: false,
+    gfm: true,
+    tables: true,
+    breaks: true,
+    sanitize: true,
+    smartLists: true,
+    smartypants: false,
+    xhtml: true
+  });
+
   let extSettings;
   loadExtSettings();
 
@@ -142,6 +153,11 @@ function init() {
 
 function setContent(content, fileDirectory) {
   $mdContent = $('#mdContent');
+  const UTF8_BOM = '\ufeff';
+  if (content.startsWith(UTF8_BOM)) { // Cleaning BOM character
+    content = content.substr(1);
+  }
+
   content = marked(content);
   $mdContent.empty().append(content);
 

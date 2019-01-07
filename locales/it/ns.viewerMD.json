@@ -1,7 +1,7 @@
 {
-    "findInDocument": "Find in document",
-    "startSearch": "Start Search",
-    "cancelSearch": "Cancel Search",
+    "findInDocument": "Cerca nel documento",
+    "startSearch": "Inizia la ricerca",
+    "cancelSearch": "Cancella ricerca",
     "zoomOut": "Zoom Indietro",
     "zoomIn": "Zoom Avanti",
     "zoomReset": "Ripristina lo Zoom",
@@ -9,6 +9,6 @@
     "resetTheme": "Ripristina Tema",
     "print": "Stampa",
     "about": "About",
-    "aboutTitle": "About Markdown Viewer",
+    "aboutTitle": "Informazioni visualizzatore markdown",
     "-": "-"
 }

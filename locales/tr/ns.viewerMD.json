@@ -1,14 +1,14 @@
 {
     "findInDocument": "Belgede ara",
-    "startSearch": "Aramayı başlat",
-    "cancelSearch": "Aramayı iptal et",
+    "startSearch": "Aramayı Başlat",
+    "cancelSearch": "Aramayı İptal Et",
     "zoomOut": "Uzaklaştır",
     "zoomIn": "Yakınlaştır",
-    "zoomReset": "Yakınlaştırma ayarını sıfırla",
+    "zoomReset": "Yakınlaştırmayı Sıfırla",
     "changeTheme": "Temayı değiştir",
-    "resetTheme": "Temayı Başlangıçtaki Durumuna Getir",
+    "resetTheme": "Temayı Sıfırla",
     "print": "Yazdır",
     "about": "Hakkında",
-    "aboutTitle": "About Markdown Viewer",
+    "aboutTitle": "Markdown Görüntüleyici Hakkında",
     "-": "-"
 }
